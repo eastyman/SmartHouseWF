@@ -84,10 +84,30 @@ namespace SmartHouseWF
                         ((Oven)newDevice).highTemperature(100);
                         break;
                     case 4:
-                        newDevice = new Satellite(DeviceName.Text);
+                        newDevice = new Satellite(DeviceName.Text);                        
+                        foreach (Control parent in DevicePanel.Controls)
+                        {
+                            foreach (Control chield in parent.Controls)
+                            {
+                                if (chield is DropDownList && chield.ID == "source")
+                                {
+                                    ((DropDownList)chield).Items.Add(DeviceName.Text);
+                                }
+                            }
+                        }
                         break;
                     case 5:
                         newDevice = new GameBox(DeviceName.Text);
+                        foreach (Control parent in DevicePanel.Controls)
+                        {
+                            foreach (Control chield in parent.Controls)
+                            {
+                                if (chield is DropDownList && chield.ID == "source")
+                                {
+                                    ((DropDownList)chield).Items.Add(DeviceName.Text);
+                                }
+                            }
+                        }
                         break;
                 }
 

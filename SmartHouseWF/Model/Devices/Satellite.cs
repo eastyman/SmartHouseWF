@@ -14,7 +14,21 @@ namespace CoolHouse
         }
         public string Identify()
         {
-            return "Спутниковый тюнер " + this.ToString();
+            return "Спутниковый тюнер " + this.name;
+        }
+
+        public override string ToString()
+        {
+            string retStr = "";
+            if (State)
+            {
+                retStr = "вкл.";
+            }
+            if (!State)
+            {
+                retStr = "выкл.";
+            }
+            return "Тюнер "+ name + " " + retStr;
         }
     }
 }

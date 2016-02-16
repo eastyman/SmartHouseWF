@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
@@ -26,7 +27,8 @@ namespace SmartHouseWF.Controls
         private TextBox temperBox; // Поле ввода для отображения/установки значения температуры      
         private Button uptempButton; // Кнопка увеличить температуру
         private Button downtempButton; // Кнопка уменьшить температуру        
-        private Button deleteButton;  // Кнопка удаления устройства           
+        private Button deleteButton;  // Кнопка удаления устройства
+         
 
         public DeviceControl(int id, IDictionary<int, Device> devicesDictionary)
         {
@@ -82,6 +84,7 @@ namespace SmartHouseWF.Controls
                 tvLabel.Text = "Выберите устройство для подключения:";
                 Controls.Add(tvLabel);
                 sourceList = new DropDownList();
+                sourceList.ID = "source";
                 sourceList.CssClass = "mac";
                 var res =
                        from t in devicesDictionary
@@ -145,10 +148,9 @@ namespace SmartHouseWF.Controls
                 downtempButton.ID = "downtemp" + id.ToString();
                 downtempButton.Click += downtempButton_Click;
                 Controls.Add(downtempButton);
-
-                Controls.Add(Span("<br />"));
-                                              
+                Controls.Add(Span("<br />"));                                              
             }
+
  
             deleteButton = new Button();
             deleteButton.ID = "d" + id.ToString();
@@ -207,7 +209,7 @@ namespace SmartHouseWF.Controls
             {
                 ((TVSet)devicesDictionary[id]).SignalSource = (ITVsourced)source;
             }
-            infoLabel.Text = devicesDictionary[id].ToString(); 
+            infoLabel.Text = devicesDictionary[id].ToString();            
 
         }
 
@@ -245,7 +247,7 @@ namespace SmartHouseWF.Controls
         protected void DeleteButtonClick(object sender, EventArgs e)
         {
             devicesDictionary.Remove(id);           
-            Parent.Controls.Remove(this); // Удаление графики для фигуры
+            Parent.Controls.Remove(this); // Удаление графики для устройства
         }
     }
 }

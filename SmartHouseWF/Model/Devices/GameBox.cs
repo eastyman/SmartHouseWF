@@ -13,7 +13,21 @@ namespace CoolHouse
         }
         public string Identify()
         {
-            return "GameBox "+ this.ToString();
+            return "GameBox "+ this.name;
+        }
+
+        public override string ToString()
+        {
+            string retStr = "";
+            if (State)
+            {
+                retStr = "вкл.";
+            }
+            if (!State)
+            {
+                retStr = "выкл.";
+            }
+            return "Приставка " + name + " " + retStr;
         }
     }
 }
