@@ -41,7 +41,7 @@ namespace SmartHouseWF
             InitialiseDevicesPanel();
         }
 
-        // Создание элементов графики для всех фигур в коллекции
+        // Создание элементов графики для всех устройств в коллекции
         protected void InitialiseDevicesPanel()
         {
             foreach (int key in devicesDictionary.Keys)
